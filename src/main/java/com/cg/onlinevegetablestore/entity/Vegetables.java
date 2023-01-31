@@ -1,10 +1,13 @@
 package com.cg.onlinevegetablestore.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +20,8 @@ public class Vegetables {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long vegetablesId;
 	
-	@Column(name = "user_id")
-	private Long userId;
+//	@Column(name = "user_id")
+//	private Long userId;
 	
 	@Column(name = "vegetables_name")
 	private String vegetablesName;
@@ -26,19 +29,18 @@ public class Vegetables {
 	@Column(name = "vegetables_price")
 	private float vegetablesPrice;
 	
-	@Column(name = "vegetables_Quantity")
-	private String vegetablesQuantity;
+	
 	
 	public Vegetables() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubsu
+		super();
 	}
 
-	public Vegetables(Long userId, String vegetablesName, float vegetablesPrice, String vegetablesQuantity) {
+	public Vegetables(Long vegetablesId, String vegetablesName, float vegetablesPrice, String vegetablesQuantity) {
 		super();
-		this.userId = userId;
+		this.vegetablesId = vegetablesId;
 		this.vegetablesName = vegetablesName;
 		this.vegetablesPrice = vegetablesPrice;
-		this.vegetablesQuantity = vegetablesQuantity;
 	}
 
 	public Long getVegetablesId() {
@@ -48,13 +50,7 @@ public class Vegetables {
 	public void setVegetablesId(Long vegetablesId) {
 		this.vegetablesId = vegetablesId;
 	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
+	
 	public String getVegetablesName() {
 		return vegetablesName;
 	}
@@ -70,13 +66,16 @@ public class Vegetables {
 	public void setVegetablesPrice(float vegetablesPrice) {
 		this.vegetablesPrice = vegetablesPrice;
 	}
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "order_id")
+	private Customer userId;
 
-	public String getVegetablesQuantity() {
-		return vegetablesQuantity;
-	}
 
-	public void setVegetablesQuantity(String vegetablesQuantity) {
-		this.vegetablesQuantity = vegetablesQuantity;
+	@Override
+	public String toString() {
+		return "Vegetables [vegetablesId=" + vegetablesId + ", userId=" + userId + ", vegetablesName=" + vegetablesName
+				+ ", vegetablesPrice=" + vegetablesPrice + "]";
 	}
+	
 	
 }

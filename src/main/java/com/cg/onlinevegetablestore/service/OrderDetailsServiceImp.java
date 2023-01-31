@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.cg.onlinevegetablestore.repository.OrderDetailsRepository;
 import com.cg.onlinevegetablestore.repository.OrderRepository;
 import com.cg.onlinevegetablestore.entity.OrderDetails;
 import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 
+@Service
 public class OrderDetailsServiceImp implements IOrderDetailsService  {
 	@Autowired
 	private OrderDetailsRepository orderDetailsRepository;
@@ -30,9 +32,13 @@ public class OrderDetailsServiceImp implements IOrderDetailsService  {
 	public List<OrderDetails> getAllOrderDetailsByOrderId(Long orderId) {
 		return orderDetailsRepository.findByOrder_OrderId(orderId);
 	}
-
 	@Override
-	public List<OrderDetails> getAllOrderDetailsByDate(Date date){
-		return orderDetailsRepository.findByDate(date);
+	public ResponseEntity<?> deleteImage(Long orderId) throws ResourceNotFoundException {
+		List<OrderDetails> orderDetails = orderDetailsRepository.findByOrder_OrderId(orderId);
+		for (OrderDetails oD : orderDetails){
+			orderDetailsRepository.delete(oD);
+		}
+		return ResponseEntity.ok().build();
 	}
+
 }

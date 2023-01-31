@@ -13,9 +13,7 @@ public interface VegetablesRepository extends JpaRepository<Vegetables, Long> {
 	//select * from vegetable where vegetable_name = ?
 		public Vegetables findByVegetablesName(String vegName);
 		
-		//list all vegetables under a category
-		//select * from vegetable where vegetable_category = ?
-		public List<Vegetables> findByVegetablesQuantity(String vegQuantity);
+		
 		
 		//list all vegetable which are less than vegprice
 		//select * from vegetable where vegetable_price < ?

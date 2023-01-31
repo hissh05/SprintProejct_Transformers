@@ -21,7 +21,7 @@ import com.cg.onlinevegetablestore.service.IVegitableService;
 @RequestMapping("/vegetables")
 public class VegetablesController {
 	//autowiring the service layer in to the controller layer
-		
+		@Autowired
 		private IVegitableService vegetableService;
 		
 		@PostMapping("/addvegetables")
@@ -54,10 +54,6 @@ public class VegetablesController {
 			return vegetableService.findByVegetablesName(vegName);
 		}
 		
-		@GetMapping("/findvegetablebyquantity/{vegct}")
-		public List<Vegetables> findByVegetablesQuantity(@PathVariable("vegct") String vegQuantity) {
-			return vegetableService.findByVegetablesQuantity(vegQuantity);
-		}
 		
 		@GetMapping("/findvegetablesbyprice1/{vegpr}")
 		public List<Vegetables> findByVegetablesPriceLessThan(@PathVariable("vegpr") float vegPrice){

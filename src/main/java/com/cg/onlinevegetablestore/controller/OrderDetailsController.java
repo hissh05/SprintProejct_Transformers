@@ -4,21 +4,30 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinevegetablestore.entity.OrderDetails;
 import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 import com.cg.onlinevegetablestore.service.IOrderDetailsService;
 
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController 
+@RequestMapping("/api/v1")
 public class OrderDetailsController {
-private IOrderDetailsService orderDetailsService;
+	@Autowired
+	private IOrderDetailsService orderDetailsService;
 	
 	@PostMapping("/orders/{orderId}/orderdetails")
+	
 	public OrderDetails orderDetails(@PathVariable(value="orderId") Long orderId,
 			@Valid @RequestBody OrderDetails orderDetails) throws ResourceNotFoundException
 	{
@@ -32,11 +41,12 @@ private IOrderDetailsService orderDetailsService;
 		return orderDetailsService.getAllOrderDetailsByOrderId(orderId);
 	}
 	
-	
-	@GetMapping("/orders/{date}/orderdetails")
-	public List<OrderDetails> getAllOrderDetailsByDate(@PathVariable(value="orderId") Date date){
-		return orderDetailsService.getAllOrderDetailsByDate(date);
-	}
+	//delete order details by corresponding orderId
+		@DeleteMapping("/orders/{orderId}/orderdetails")
+	    public ResponseEntity<?> deleteImage(@PathVariable(value = "orderId") Long orderId)
+		   throws ResourceNotFoundException {
+			return orderDetailsService.deleteImage(orderId);
+		}
 }
 
 

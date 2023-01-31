@@ -10,6 +10,7 @@ import com.cg.onlinevegetablestore.entity.Vegetables;
 import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 import com.cg.onlinevegetablestore.repository.VegetablesRepository;
 
+@Service
 public class VegetablesServiceImpl implements IVegitableService{
 	@Autowired
 	private VegetablesRepository vegetablesRepo;
@@ -37,7 +38,6 @@ public class VegetablesServiceImpl implements IVegitableService{
 	
 		existingVegetables.setVegetablesName(veggie.getVegetablesName());
 		existingVegetables.setVegetablesPrice(veggie.getVegetablesPrice());
-		existingVegetables.setVegetablesQuantity(veggie.getVegetablesQuantity());
 		vegetablesRepo.save(existingVegetables);
 		return existingVegetables;
 	}
@@ -52,10 +52,6 @@ public class VegetablesServiceImpl implements IVegitableService{
 		return vegetablesRepo.findByVegetablesName(vegName);
 	}
 
-	@Override
-	public List<Vegetables> findByVegetablesQuantity(String vegQuantity) {
-		return vegetablesRepo.findByVegetablesQuantity(vegQuantity);
-	}
 
 	@Override
 	public List<Vegetables> findByVegetablesPriceLessThan(float vegPrice) {

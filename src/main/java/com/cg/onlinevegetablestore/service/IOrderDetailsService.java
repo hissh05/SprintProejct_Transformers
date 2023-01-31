@@ -10,5 +10,5 @@ import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 public interface IOrderDetailsService {
 	public OrderDetails orderDetails(Long orderId,OrderDetails orderDetails) throws ResourceNotFoundException;
 	public List<OrderDetails> getAllOrderDetailsByOrderId(Long orderId);
-    public List<OrderDetails> getAllOrderDetailsByDate(Date date);
+    public ResponseEntity<?> deleteImage(Long orderId) throws ResourceNotFoundException;
 }
