@@ -21,23 +21,23 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_Id", nullable = false)
+	@Column(name = "user_Id")
 	private Long userId;
 	
 	@Column(name="user_name", nullable = false)
 	private String userName;
 	
 	@Column(name = "password", nullable = false)
-	private String Password;
+	private String password;
 	
 	@Column(name = "mobile_no", nullable = false)
-	private Long MobileNo;
+	private Long mobileNo;
 	
 	@Column(name = "email", nullable = false)
 	private String email;
 	
 	@Column(name = "address", nullable = false)
-	private String Address;
+	private String address;
 	
 	
 	
@@ -59,14 +59,14 @@ public class Customer {
 	
 	
 
-	public Customer(Long userId,String userName, String Password,Long MobileNo, String email, String Address) {
+	public Customer(Long userId,String userName, String password,Long mobileNo, String email, String address) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
-		this.Password = Password;
-		this.MobileNo = MobileNo;
+		this.password = password;
+		this.mobileNo = mobileNo;
 		this.email = email;
-		this.Address = Address;
+		this.address = address;
 	}
 
 
@@ -97,13 +97,13 @@ public class Customer {
 
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 
@@ -115,27 +115,27 @@ public class Customer {
 
 
 	public void setEmail(String email) {
-		email = email;
+		this.email = email;
 	}
 
 
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 	
 	public Long getmobileNo() {
-		return MobileNo;
+		return mobileNo;
 	}
 	
 	public void setMobileNo(Long mobileNo) {
-		MobileNo = mobileNo;
+		this.mobileNo = mobileNo;
 	}
 	
 	
@@ -145,8 +145,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [userId=" + userId + ", userName=" + userName + ",Password ="+ Password +", MobileNo =" + MobileNo +", Email="
-				+ email + ",Address =" +Address+ "]";
+		return "Customer [userId=" + userId + ", userName=" + userName + ",Password ="+ password +", MobileNo =" + mobileNo +", Email="
+				+ email + ",Address =" +address+ "]";
 	}
 
 	

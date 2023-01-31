@@ -18,7 +18,7 @@ public class Order{
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="order_id")
 		
-		private String orderId;
+		private Long orderId;
 		
 		@Column(name = "userId")
 		private Long userId;
@@ -41,7 +41,7 @@ public class Order{
 		
 		
 
-		public Order(String orderId, Long userId, double amount, Date orderDate, String orderAddress) {
+		public Order(Long orderId, Long userId, double amount, Date orderDate, String orderAddress) {
 			super();
 			this.orderId = orderId;
 			this.userId = userId;
@@ -63,11 +63,11 @@ public class Order{
 		}
 
 
-		public String getOrderId() {
+		public Long getOrderId() {
 			return orderId;
 		}
 
-		public void setOrderId(String orderId) {
+		public void setOrderId(Long orderId) {
 			this.orderId = orderId;
 		}
 
