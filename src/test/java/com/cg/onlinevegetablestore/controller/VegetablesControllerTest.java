@@ -14,7 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.cg.onlinevegetablestore.entity.Admin;
+import com.cg.onlinevegetablestore.entity.Vegetables;
 import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 import com.cg.onlinevegetablestore.service.IAdminService;
 import com.cg.onlinevegetablestore.service.ICustomerService;
@@ -23,10 +23,8 @@ import com.cg.onlinevegetablestore.service.IOrderDetailsService;
 import com.cg.onlinevegetablestore.service.IOrderService;
 import com.cg.onlinevegetablestore.service.IVegitableService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 @WebMvcTest
-public class AdminControllerTest {
-
+public class VegetablesControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
@@ -48,32 +46,35 @@ public class AdminControllerTest {
 	@MockBean
 	private IOrderDetailsService orderDetailsService;
 	
+	
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	private Admin admin;
-	private Admin admin1;
-	
+	private Vegetables vegetables;
+	private Vegetables vegetables1;
 	@BeforeEach
 	public void init() {
-		admin = new Admin("Viraj","Pawar","viraj@gmail.com","virpp","123");
+		vegetables = new Vegetables(1L,"Brinjal",23,"23");
+		vegetables1 = new Vegetables(2L,"Tomato",30,"50");
+	
 	}
 	
 	@Test
-	public void testAddAdmin() throws Exception{
-		when(adminService.addAdmin((Admin) any(Admin.class))).thenReturn(admin);
+	public void testAddVegetables() throws Exception{
+		when(vegitableService.addVegetables((Vegetables) any(Vegetables.class))).thenReturn(vegetables);
 	}
 	
 	@Test
-	public void testgetAllAdmins() {
-		List<Admin> adminList = new ArrayList<Admin>();
-		adminList.add(admin);
-		adminList.add(admin1);
-		when(adminService.getAllAdmins()).thenReturn(adminList);
+	public void testlistAllVegetables() {
+		List<Vegetables> veggieList = new ArrayList<Vegetables>();
+		veggieList.add(vegetables);
+		veggieList.add(vegetables1);
+		when(vegitableService.listAllVegetables()).thenReturn(veggieList);
 	}
 	
 	@Test
-	public void testgetAdminById1() throws ResourceNotFoundException {	
-		when(adminService.getAdminById(anyLong())).thenReturn(admin);
+	public void testgetVegetablesById() throws ResourceNotFoundException {	
+		when(vegitableService.getVegetablesById(anyLong())).thenReturn(vegetables);
 	}
+
 }

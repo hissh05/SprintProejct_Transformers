@@ -1,5 +1,6 @@
 package com.cg.onlinevegetablestore.controller;
 
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -14,7 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.cg.onlinevegetablestore.entity.Admin;
+import com.cg.onlinevegetablestore.entity.Customer;
 import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 import com.cg.onlinevegetablestore.service.IAdminService;
 import com.cg.onlinevegetablestore.service.ICustomerService;
@@ -25,8 +26,7 @@ import com.cg.onlinevegetablestore.service.IVegitableService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class AdminControllerTest {
-
+public class CustomerControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
@@ -47,33 +47,39 @@ public class AdminControllerTest {
 	
 	@MockBean
 	private IOrderDetailsService orderDetailsService;
-	
+//	
+//	@MockBean
+//	private ICategoryService categoryService;
+//	
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	private Admin admin;
-	private Admin admin1;
-	
+	private Customer customer;
+	private Customer customer1;
 	@BeforeEach
 	public void init() {
-		admin = new Admin("Viraj","Pawar","viraj@gmail.com","virpp","123");
+		customer = new Customer("Kunal", "k@gmail.com", "k123", "987");
+		customer1 = new Customer("Omkar", "o@gmail.com", "o123", "234");
+	
 	}
 	
 	@Test
-	public void testAddAdmin() throws Exception{
-		when(adminService.addAdmin((Admin) any(Admin.class))).thenReturn(admin);
+	public void testcreateCustomer() throws Exception{
+		when(customerService.createCustomer((Customer) any(Customer.class))).thenReturn(customer);
 	}
 	
 	@Test
-	public void testgetAllAdmins() {
-		List<Admin> adminList = new ArrayList<Admin>();
-		adminList.add(admin);
-		adminList.add(admin1);
-		when(adminService.getAllAdmins()).thenReturn(adminList);
+	public void testgetCustomerList() {
+		List<Customer> custList = new ArrayList<Customer>();
+		custList.add(customer);
+		custList.add(customer1);
+		when(customerService.getCustomerList()).thenReturn(custList);
 	}
 	
-	@Test
-	public void testgetAdminById1() throws ResourceNotFoundException {	
-		when(adminService.getAdminById(anyLong())).thenReturn(admin);
-	}
+//	@Test
+//	public void testgetCustomerById() throws ResourceNotFoundException {	
+//		when(customerService.getCustomerById(anyLong())).thenReturn(customer);
+//		
+//		
+		
 }
