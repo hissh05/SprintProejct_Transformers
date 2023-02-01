@@ -6,32 +6,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 @Entity
-@Table(name = "admins")
+@Table(name = "admin")
 public class Admin {
+	// admin id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "admin_id")
+	@Column(name = "admin_id", nullable = false)
 	private Long adminId;
 	
-	@Column(name = "first_name")
+	// admin name
+	@Column(name = "first_name", nullable = false)
 	private String firstName;
 	
-	@Column(name = "last_name")
+	//admin last_name
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
 	
-	@Column(name = "email")
+	// email
+	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
+	@Column(name = "email", nullable = false)
 	private String email;
 	
-	@Column(name = "username")
+	// username
+	@Column(name = "username", nullable = false)
 	private String username;
 	
-	@Column(name = "password")
+	// password
+	@Column(name = "password", nullable = false)
 	private String password;
 	
 	
-
+	// cunstructor for Admin class
 	public Admin() {
 		super();
 	}
@@ -54,6 +62,7 @@ public class Admin {
 		this.password = password;
 	}
 	
+	// getters and setters 
 	public Long getAdminId() {
 		return adminId;
 	}

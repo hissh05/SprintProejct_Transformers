@@ -9,12 +9,21 @@ import org.springframework.http.ResponseEntity;
 import com.cg.onlinevegetablestore.entity.Admin;
 import com.cg.onlinevegetablestore.exception.ResourceNotFoundException;
 
+
 public interface IAdminService {
-	public Admin createAdmin(Admin admin);
+	// Adding new admin
+	public Admin addAdmin(Admin admin);
+	// Getting all admins
 	public List<Admin> getAllAdmins();
-	public ResponseEntity<Admin> getAdminById(Long adminId)
-            throws ResourceNotFoundException;
-	public ResponseEntity<Admin> getAdminByUsernameAndEmail(String username,
-			String email) throws ResourceNotFoundException;
-	public ResponseEntity<Admin> updateAdmin(Long adminId,Admin adminDetails) throws ResourceNotFoundException;
+	// Getting admin by Id
+	public Admin getAdminById(Long adminId) throws ResourceNotFoundException;
+	// Updating admin
+	public Admin updateAdmin(Admin adminDetails, Long adminId) throws ResourceNotFoundException;
+	// deleting admin
+	public void deleteAdmin(Long adminId)throws ResourceNotFoundException;
+	// Getting admin by username
+	public Admin findByAdminName(String adminName)throws ResourceNotFoundException;
 }
+
+
+
