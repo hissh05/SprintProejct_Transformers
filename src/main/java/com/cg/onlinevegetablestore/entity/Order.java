@@ -52,7 +52,6 @@ public class Order{
 		}
 
 
-
 		public String getOrderAddress() {
 			return orderAddress;
 		}
