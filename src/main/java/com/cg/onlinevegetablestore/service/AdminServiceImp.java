@@ -46,6 +46,8 @@ public class AdminServiceImp implements IAdminService{
 		existingAdmin.setFirstName(adminDetails.getFirstName());
 		existingAdmin.setEmail(adminDetails.getEmail());
 		existingAdmin.setPassword(adminDetails.getPassword());
+		existingAdmin.setLastName(adminDetails.getLastName());
+		existingAdmin.setUsername(adminDetails.getUsername());
 		
 		adminRepository.save(existingAdmin);
 		return existingAdmin;
