@@ -21,7 +21,7 @@ public class OrderDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="orderdetails_id")
-	private Long DetailsId;
+	private Long detailsId;
 	
 	@Column(name = "order_status", nullable = false)
 	private String order_status;
@@ -43,11 +43,11 @@ public class OrderDetails {
 	}
 
 	public Long getOrderDetailsId() {
-		return DetailsId;
+		return detailsId;
 	}
 
 	public void setOrderDetailsId(Long orderDetailsId) {
-		this.DetailsId = orderDetailsId;
+		this.detailsId = orderDetailsId;
 	}
 
 	public String getOrder_status() {
@@ -87,10 +87,21 @@ public class OrderDetails {
 		this.order = order2;
 		
 	}
+	
+	public OrderDetails(Long detailsId, String order_status, double tPrice, Date date, String address, Order order) {
+		super();
+		this.detailsId = detailsId;
+		this.order_status = order_status;
+		this.tPrice = tPrice;
+		this.date = date;
+		this.address = address;
+		
+		this.order = order;
+		}
 
 	@Override
 	public String toString() {
-		return "OrderDetails [DetailsId=" + DetailsId + ", order_status=" + order_status + ", tPrice=" + tPrice
+		return "OrderDetails [DetailsId=" + detailsId + ", order_status=" + order_status + ", tPrice=" + tPrice
 				+ ", date=" + date + ", address=" + address + ", order=" + order + "]";
 	}
 }
